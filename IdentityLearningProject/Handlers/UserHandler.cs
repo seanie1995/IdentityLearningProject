@@ -8,11 +8,11 @@ namespace IdentityLearningProject.Handlers
 {
     public class UserHandler
     {
-        public static IResult RegisterUser(IUserService userService, UserDto newUser)
+        public static async Task<IResult> RegisterUser(IUserService userService, UserDto newUser)
         {
             try
             {
-                userService.RegisterUser(newUser);
+                await userService.RegisterUser(newUser);
             }
             catch
             {

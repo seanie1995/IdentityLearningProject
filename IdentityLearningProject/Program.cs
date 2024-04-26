@@ -38,6 +38,8 @@ namespace IdentityLearningProject
                      
             builder.Services.AddAuthorizationBuilder();
 
+            
+
             // Add services to the container.
             builder.Services.AddAuthorization();
 

@@ -21,9 +21,9 @@ namespace YourNamespace.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(UserDto user)
+        public async Task<IActionResult> Register(UserDto user)
         {
-            var result = UserHandler.RegisterUser(_userService, user);
+            var result = await UserHandler.RegisterUser(_userService, user);
 
             
             return StatusCode((int)HttpStatusCode.Created);
