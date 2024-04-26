@@ -1,0 +1,6 @@
+@IdentityLearningProject_HostAddress = http://localhost:5230
+
+GET {{IdentityLearningProject_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
