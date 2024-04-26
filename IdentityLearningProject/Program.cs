@@ -70,6 +70,11 @@ namespace IdentityLearningProject
   "email": "sean@gmail.com",
   "password": "P@ssw0rd"
 }
-*/ 
+{
+  "name": "Emilia",
+  "email": "emi@gmail.com",
+  "password": "w0rdP@ss"
+}
+*/
 
 // ^ Premade Json to pass in Swagger.

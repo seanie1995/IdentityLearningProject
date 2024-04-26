@@ -7,7 +7,7 @@ namespace IdentityLearningProject.Services
 {
     public interface IUserService
     {    
-        void RegisterUser(UserDto user);       
+        Task<bool> RegisterUser(UserDto user);       
     }
 
     public class UserService : IUserService
@@ -19,7 +19,7 @@ namespace IdentityLearningProject.Services
             _userManager = userManager;
         }
 
-        public async void RegisterUser(UserDto user) 
+        public async Task<bool> RegisterUser(UserDto user) 
         {     
             var identityUser = new User
             {           
@@ -30,6 +30,8 @@ namespace IdentityLearningProject.Services
             };
 
             var result = await _userManager.CreateAsync(identityUser, user.Password);
+
+            return result.Succeeded;
         
         }
      

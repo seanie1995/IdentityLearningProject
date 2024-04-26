@@ -4,6 +4,7 @@ using IdentityLearningProject.Models.DTO;
 using IdentityLearningProject.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace YourNamespace.Controllers
@@ -14,23 +15,18 @@ namespace YourNamespace.Controllers
     {
         private readonly IUserService _userService;
 
-        private readonly UserHandler _userHandler;
-
-        public UserController(UserHandler userHandler)
-        {
-            _userHandler = userHandler;
-        }
-
         public UserController(IUserService userService)
         {
             _userService = userService;
         }
 
         [HttpPost]
-        public void Register(UserDto user)
+        public IActionResult Register(UserDto user)
         {
-            UserHandler.RegisterUser(_userService, user);
+            var result = UserHandler.RegisterUser(_userService, user);
+
             
+            return StatusCode((int)HttpStatusCode.Created);
         }
     }
 
