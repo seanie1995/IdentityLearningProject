@@ -8,7 +8,7 @@ namespace IdentityLearningProject.Handlers
 {
     public class UserHandler
     {
-        public static async Task<IResult> RegisterUser(IUserService userService, UserDto newUser)
+        public static async Task<bool> RegisterUser(IUserService userService, UserDto newUser)
         {
             try
             {
@@ -16,10 +16,25 @@ namespace IdentityLearningProject.Handlers
             }
             catch
             {
-                return Results.BadRequest();
+                return false;
             }
 
-            return Results.StatusCode((int)HttpStatusCode.Created);
+            return true;
+
+        }
+
+        public static async Task<bool> Login(IUserService userService, LoginUserDto loginUser)
+        {
+            try
+            {
+                await userService.Login(loginUser);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
 
         }
     }

@@ -7,7 +7,9 @@ namespace IdentityLearningProject.Services
 {
     public interface IUserService
     {    
-        Task<bool> RegisterUser(UserDto user);       
+        Task<bool> RegisterUser(UserDto user);
+        Task<bool> Login(LoginUserDto User);
+
     }
 
     public class UserService : IUserService
@@ -34,6 +36,20 @@ namespace IdentityLearningProject.Services
             return result.Succeeded;
         
         }
+
+        public async Task<bool> Login(LoginUserDto user)
+        {
+            var identityUser = await _userManager.FindByEmailAsync(user.Email);
+
+            if (identityUser == null)
+            {
+                return false;
+            }
+
+            return await _userManager.CheckPasswordAsync(identityUser, user.Password);
+
+        }
+
      
     }
 }

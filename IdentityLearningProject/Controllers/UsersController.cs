@@ -20,14 +20,34 @@ namespace YourNamespace.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(UserDto user)
         {
             var result = await UserHandler.RegisterUser(_userService, user);
 
-            
-            return StatusCode((int)HttpStatusCode.Created);
+            if (result == false)
+            {
+                return BadRequest("Failed");
+            }
+
+
+            return Ok("Account Created");
         }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(LoginUserDto loginUser)
+        {
+            var result = await UserHandler.Login(_userService, loginUser);
+
+            if (result == false)
+            {
+                return BadRequest("Wrong username or password");
+            }
+
+            return Ok("Login success");
+
+        }
+
     }
 
    
