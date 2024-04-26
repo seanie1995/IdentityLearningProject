@@ -23,9 +23,11 @@ namespace IdentityLearningProject
 
             builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
+            // Code Below: Service needed to be able to add new users into database + optional requirements
+
             builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
-                options.Password.RequiredLength = 5;
+                options.Password.RequiredLength = 5; // <--- Example of optional requirement
             }).AddEntityFrameworkStores<ApplicationContext>()
             .AddDefaultTokenProviders();
 

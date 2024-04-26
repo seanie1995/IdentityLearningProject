@@ -5,8 +5,10 @@ using System.Reflection.Emit;
 
 namespace IdentityLearningProject.Data
 {
-    public class ApplicationContext : IdentityDbContext<User>
-    {
+    public class ApplicationContext : IdentityDbContext<User> // ApplicationContext inherits from IdentityDbContext. 
+    {                                                         // "<User>" tells the program that the locally designed model
+                                                              // will function as AspNetUser in the database.
+                                                              // Otherwise, leave blank.
         public DbSet<User> Users { get; set; }
         public DbSet<Child> Children { get; set; }
         public DbSet<Allergy> Allergies { get; set; }

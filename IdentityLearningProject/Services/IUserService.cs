@@ -12,8 +12,8 @@ namespace IdentityLearningProject.Services
 
     public class UserService : IUserService
     {
-        private readonly UserManager<User> _userManager;
-
+        private readonly UserManager<User> _userManager; // User manager is needed to add info into AspNetUsers. 
+                                                         // Make sure to input User (or IdentityUser if not using custom model) as parameter
         public UserService(UserManager<User> userManager)
         {
             _userManager = userManager;
