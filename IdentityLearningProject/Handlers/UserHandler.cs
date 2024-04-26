@@ -6,21 +6,21 @@ using System.Net;
 
 namespace IdentityLearningProject.Handlers
 {
-    //public class UserHandler
-    //{
-    //    public static IResult AddUser(IUserService userService, UserDto newUser)
-    //    {
-    //        try
-    //        {
-    //            userService.AddUser(newUser);
-    //        }
-    //        catch
-    //        {
-    //            return Results.BadRequest();
-    //        }
+    public class UserHandler
+    {
+        public static IResult RegisterUser(IUserService userService, UserDto newUser)
+        {
+            try
+            {
+                userService.RegisterUser(newUser);
+            }
+            catch
+            {
+                return Results.BadRequest();
+            }
 
-    //        return Results.StatusCode((int)HttpStatusCode.Created);
+            return Results.StatusCode((int)HttpStatusCode.Created);
 
-    //    }
-    //}
+        }
+    }
 }

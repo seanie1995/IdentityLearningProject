@@ -1,4 +1,5 @@
-﻿ using IdentityLearningProject.Models;
+﻿using IdentityLearningProject.Handlers;
+using IdentityLearningProject.Models;
 using IdentityLearningProject.Models.DTO;
 using IdentityLearningProject.Services;
 using Microsoft.AspNetCore.Identity;
@@ -13,15 +14,23 @@ namespace YourNamespace.Controllers
     {
         private readonly IUserService _userService;
 
+        private readonly UserHandler _userHandler;
+
+        public UserController(UserHandler userHandler)
+        {
+            _userHandler = userHandler;
+        }
+
         public UserController(IUserService userService)
         {
             _userService = userService;
         }
 
         [HttpPost]
-        public async Task<bool> Register(UserDto user)
+        public void Register(UserDto user)
         {
-            return await _userService.RegisterUser(user);
+            UserHandler.RegisterUser(_userService, user);
+            
         }
     }
 
