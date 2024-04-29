@@ -38,14 +38,22 @@ namespace IdentityLearningProject.Services
             {           
                 Name = user.Name,
                 UserName = user.Email,
-                Email = user.Email,           
-                Password = user.Password,
+                Email = user.Email,                         
             };
         
             var result = await _userManager.CreateAsync(identityUser, user.Password);
 
-            return Results.Ok("User Created");
-        
+            if (result.Succeeded)
+            {
+                // User created successfully, return Ok
+                return Results.Ok("User created successfully.");
+            }
+            else
+            {
+                // User creation failed, return BadRequest with error message
+                return Results.BadRequest("Failed to create user.");
+            }
+
         }
 
         public async Task<IResult> UserLoginAsync(LoginUserDto loginUser)
@@ -55,7 +63,7 @@ namespace IdentityLearningProject.Services
 
             if (identityUser == null)
             {
-                return Results.BadRequest("User Not Found");
+                return Results.BadRequest($"User Not Found");
             }
 
             var isPasswordValid = await _userManager.CheckPasswordAsync(identityUser, loginUser.Password);

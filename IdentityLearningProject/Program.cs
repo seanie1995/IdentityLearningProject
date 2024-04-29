@@ -23,6 +23,7 @@ namespace IdentityLearningProject
             builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 5; // Example of optional requirement
+                options.User.RequireUniqueEmail = true;
              
             })
             .AddEntityFrameworkStores<ApplicationContext>()
