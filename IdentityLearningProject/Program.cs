@@ -16,31 +16,23 @@ namespace IdentityLearningProject
             var builder = WebApplication.CreateBuilder(args);
 
             //Database Connection
-
             string connectionString = builder.Configuration.GetConnectionString("ApplicationContext");
-
-            
-
             builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
-            // Code Below: Service needed to be able to add new users into database + optional requirements
-
+            // Add Identity services
             builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
-                options.Password.RequiredLength = 5; // <--- Example of optional requirement
-            }).AddEntityFrameworkStores<ApplicationContext>()
+                options.Password.RequiredLength = 5; // Example of optional requirement
+             
+            })
+            .AddEntityFrameworkStores<ApplicationContext>()
             .AddDefaultTokenProviders();
 
-            builder.Services.AddScoped<IUserService, UserService>();
-         
-                  
-                     
-            builder.Services.AddAuthorizationBuilder();
-
-            
-
-            // Add services to the container.
+            // Add Authorization
             builder.Services.AddAuthorization();
+
+            // Add UserService
+            builder.Services.AddScoped<IUserService, UserService>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -55,16 +47,12 @@ namespace IdentityLearningProject
                 app.UseSwaggerUI();
             }
 
-            app.MapPost("/register", UserHandler.RegisterUserAsync);
-            app.MapPost("/login", UserHandler.LoginAsync);
-
-
-
             app.UseHttpsRedirection();
-          
             app.UseAuthorization();
-           
-            
+
+            // Map endpoints
+            app.MapPost("/register", UserHandler.RegisterUserAsync);
+            app.MapPost("/login", UserHandler.UserLoginASync);
 
             app.Run();
         }
