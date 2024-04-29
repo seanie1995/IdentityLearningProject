@@ -17,18 +17,7 @@ namespace IdentityLearningProject.Handlers
            
 
         }
-
-        //public static async Task<IResult> UserLoginAsync(IUserService userService, LoginUserDto loginUser)
-        //{
-        //    if (await userService.UserLoginAsync(loginUser))
-        //    {
-        //        return Results.Ok("Login Success");
-        //    }
-        //    else
-        //    {
-        //        return Results.BadRequest("Login Failed");
-        //    }
-        //}
+   
 
         public static async Task<IResult> UserLoginASync(IUserService userService, LoginUserDto loginUser)
         {

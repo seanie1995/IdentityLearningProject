@@ -76,18 +76,7 @@ namespace IdentityLearningProject.Services
             return Results.Ok("Login successful.");
         }
 
-        //public async Task<bool> UserLoginAsync(LoginUserDto loginUser)
-        //{
-        //    var identityUser = await _userManager.FindByEmailAsync(loginUser.Email);
-
-        //    if (identityUser is null)
-        //    {
-        //        return false;
-        //    }
-
-        //    return await _userManager.CheckPasswordAsync(identityUser, loginUser.Password);
-
-        //}
+        
 
     }
 }
