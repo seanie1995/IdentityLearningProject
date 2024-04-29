@@ -12,14 +12,16 @@ namespace IdentityLearningProject.Handlers
         {
             try
             {
-                await userService.RegisterUser(newUser);
+                return await userService.RegisterUser(newUser);
+                
+                
             }
-            catch
+            catch 
             {
-                return false;
+                return false;         
             }
 
-            return true;
+           
 
         }
 
@@ -27,15 +29,14 @@ namespace IdentityLearningProject.Handlers
         {
             try
             {
-                await userService.Login(loginUser);
+                return await userService.Login(loginUser);
+                         
             }
             catch
             {
                 return false;
             }
-
-            return true;
-
+           
         }
     }
 }

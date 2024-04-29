@@ -21,30 +21,32 @@ namespace YourNamespace.Controllers
         }
 
         [HttpPost("Register")]
+        
         public async Task<IActionResult> Register(UserDto user)
         {
-            var result = await UserHandler.RegisterUser(_userService, user);
-
-            if (result == false)
+           
+            if  (await UserHandler.RegisterUser(_userService, user))
             {
-                return BadRequest("Failed");
+                return Ok("User Registered");
             }
-
-
-            return Ok("Account Created");
+            return BadRequest("User Not Registered");
         }
 
         [HttpPost("Login")]
+        
         public async Task<IActionResult> Login(LoginUserDto loginUser)
         {
-            var result = await UserHandler.Login(_userService, loginUser);
-
-            if (result == false)
+            
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Wrong username or password");
+                return BadRequest();
             }
 
-            return Ok("Login success");
+            if (await UserHandler.Login(_userService, loginUser))
+            {
+                return Ok("Succesfully Logged In");
+            }
+            return BadRequest("Login Failed");
 
         }
 
