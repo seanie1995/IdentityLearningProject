@@ -33,8 +33,7 @@ namespace IdentityLearningProject
 
             builder.Services.AddScoped<IUserService, UserService>();
          
-            builder.Services.AddControllers();
-             
+                  
                      
             builder.Services.AddAuthorizationBuilder();
 
@@ -55,12 +54,17 @@ namespace IdentityLearningProject
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-         
+
+            app.MapPost("/register", UserHandler.RegisterUserAsync);
+            app.MapPost("/login", UserHandler.LoginAsync);
+
+
+
             app.UseHttpsRedirection();
           
             app.UseAuthorization();
            
-            app.MapControllers();
+            
 
             app.Run();
         }

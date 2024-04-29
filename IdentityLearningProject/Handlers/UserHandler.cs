@@ -8,35 +8,31 @@ namespace IdentityLearningProject.Handlers
 {
     public class UserHandler
     {
-        public static async Task<bool> RegisterUser(IUserService userService, UserDto newUser)
+        public static async Task<IResult> RegisterUserAsync(IUserService userService, UserDto newUser)
         {
-            try
+            
+            if(await userService.RegisterUserAsync(newUser))
             {
-                return await userService.RegisterUser(newUser);
-                
-                
+                return Results.Ok("User Registered");
             }
-            catch 
+            else
             {
-                return false;         
+                return Results.BadRequest("User Not Registered");
             }
-
            
 
         }
 
-        public static async Task<bool> Login(IUserService userService, LoginUserDto loginUser)
+        public static async Task<IResult> LoginAsync(IUserService userService, LoginUserDto loginUser)
         {
-            try
+            if (await userService.LoginAsync(loginUser))
             {
-                return await userService.Login(loginUser);
-                         
+                return Results.Ok("Login Success");
             }
-            catch
+            else
             {
-                return false;
+                return Results.BadRequest("Login Failed");
             }
-           
         }
     }
 }
