@@ -7,9 +7,7 @@ namespace IdentityLearningProject.Models
     {
        
         public string Name { get; set; }
-        
-        
-        
+             
         public virtual ICollection<Child> Children { get; set; }
 
 
