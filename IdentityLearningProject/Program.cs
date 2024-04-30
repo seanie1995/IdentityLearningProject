@@ -30,7 +30,7 @@ namespace IdentityLearningProject
             .AddDefaultTokenProviders();
 
             // Add Authorization
-            builder.Services.AddAuthorization();
+            builder.Services.AddAuthorization();    
 
             // Add UserService
             builder.Services.AddScoped<IUserService, UserService>();
